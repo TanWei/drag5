@@ -1,0 +1,86 @@
+﻿<Page
+    x:Class="drag5.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:drag5"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <Style x:Key="RecentFileItemContainerStyle" TargetType="GridViewItem">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="GridViewItem">
+                            <GridViewItemPresenter
+                                AllowDrop="True"
+                                BorderThickness="0"
+                                CanDrag="True"
+                                DragStarting="GridViewItemPresenter_DragStarting"
+                                PlaceholderBackground="Transparent"
+                                PointerOverBackground="Transparent" />
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <DataTemplate x:Key="RecentFileItemDataTemplate" x:DataType="x:String">
+                <StackPanel
+                    Width="87"
+                    Height="105"
+                    Margin="0,0,12,0">
+                    <Grid Width="54" Height="64">
+                        <Rectangle
+                            Width="44"
+                            Height="54"
+                            Margin="0,10,0,0"
+                            AllowDrop="True">
+                            <Rectangle.Fill>
+                                <SolidColorBrush Color="Red" />
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <Button
+                            x:Name="AbortBtn"
+                            Width="22"
+                            Height="19"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Top"
+                            AllowDrop="True"
+                            Background="Green"
+                            BorderThickness="0" />
+                    </Grid>
+                </StackPanel>
+            </DataTemplate>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <StackPanel
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center"
+        Orientation="Vertical">
+        <GridView
+            Name="RecentFile_GridView"
+            Width="344"
+            Height="126"
+            Margin="0,10,0,0"
+            Padding="27,15,0,0"
+            AllowDrop="False"
+            Background="AliceBlue"
+            CanDragItems="True"
+            DragItemsStarting="RecentFile_GridView_DragItemsStarting"
+            ItemContainerStyle="{StaticResource RecentFileItemContainerStyle}"
+            ItemTemplate="{StaticResource RecentFileItemDataTemplate}" />
+        <GridView
+            Name="RecentFile_GridView1"
+            Width="344"
+            Height="126"
+            Margin="0,10,0,0"
+            Padding="27,15,0,0"
+            AllowDrop="True"
+            Background="AliceBlue"
+            CanDragItems="True"
+            DragItemsStarting="RecentFile_GridView_DragItemsStarting"
+            ItemContainerStyle="{StaticResource RecentFileItemContainerStyle}"
+            ItemTemplate="{StaticResource RecentFileItemDataTemplate}" />
+    </StackPanel>
+</Page>
